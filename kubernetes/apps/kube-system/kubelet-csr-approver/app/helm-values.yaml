@@ -1,0 +1,3 @@
+---
+providerRegex: ^(glados-c01|glados-w01|glados-w02)$
+bypassDnsResolution: true
