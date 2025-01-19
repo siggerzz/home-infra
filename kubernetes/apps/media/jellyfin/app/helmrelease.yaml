@@ -69,6 +69,13 @@ spec:
         globalMounts:
           - path: /config/transcodes
 
+    media:
+      enabled: true
+      type: nfs
+      server: ${SECRET_NFS_DOMAIN}
+      path: /mnt/user/Media
+      mountPath: /data
+
     env:
       TZ: "Europe/London"
       DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
