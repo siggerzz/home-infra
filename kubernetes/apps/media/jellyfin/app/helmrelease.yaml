@@ -62,13 +62,6 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         existingClaim: jellyfin-config
-      media:
-        enabled: true
-        type: nfs
-        server: "${SECRET_NFS_DOMAIN}"
-        path: /mnt/user/Media
-        globalMounts:
-          - path: /media
       transcode:
         enabled: true
         type: emptyDir
