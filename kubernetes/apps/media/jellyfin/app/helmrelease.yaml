@@ -74,7 +74,6 @@ spec:
         server: ${SECRET_NFS_DOMAIN}
         path: /mnt/user/Media
         mountPath: /data
-        readOnly: true
 
     env:
       TZ: "Europe/London"
