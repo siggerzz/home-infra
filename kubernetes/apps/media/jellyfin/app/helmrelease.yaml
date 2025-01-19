@@ -34,12 +34,13 @@ spec:
     ingress:
       main:
         enabled: true
-        className: nginx
+        className: external
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Range $http_range;
             proxy_set_header If-Range $http_if_range;
           nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
           - host: &host "jellyfin.${SECRET_DOMAIN}"
             paths:
