@@ -30,7 +30,6 @@ spec:
         ports:
           http:
             port: 8096
-        identifier: app
 
     ingress:
       main:
