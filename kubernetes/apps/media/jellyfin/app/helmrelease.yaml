@@ -26,7 +26,7 @@ spec:
 
     service:
       main:
-        controller: jellyfin
+        controller: main
         ports:
           http:
             port: 8096
