@@ -73,7 +73,6 @@ spec:
         type: nfs
         server: ${SECRET_NFS_DOMAIN}
         path: /mnt/user/Media
-
     env:
       TZ: "Europe/London"
       DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
@@ -87,7 +86,9 @@ spec:
 
     resources:
       requests:
+        gpu.intel.com/i915: 1
         cpu: 1000m
         memory: 3000Mi
       limits:
-        memory: 4000Mi 
+        gpu.intel.com/i915: 1
+        memory: 10000Mi 
