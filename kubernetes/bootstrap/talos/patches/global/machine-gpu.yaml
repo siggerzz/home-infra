@@ -1,0 +1,7 @@
+machine:
+  kernel:
+    modules:
+      - name: i915
+  sysctls:
+    # Required for GPU support
+    net.core.bpf_jit_harden: 1 
