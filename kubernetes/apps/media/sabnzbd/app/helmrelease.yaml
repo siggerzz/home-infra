@@ -60,6 +60,8 @@ spec:
       app:
         enabled: true
         className: internal
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host "sabnzbd.${SECRET_DOMAIN}"
             paths:
