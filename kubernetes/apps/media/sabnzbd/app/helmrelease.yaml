@@ -32,7 +32,7 @@ spec:
                 sabnzbd.default.svc,
                 sabnzbd.default.svc.cluster,
                 sabnzbd.default.svc.cluster.local,
-                sab.${SECRET_DOMAIN}
+                sabnzbd.${SECRET_DOMAIN}
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
