@@ -36,6 +36,7 @@ spec:
         enabled: true
         className: external
         annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Range $http_range;
             proxy_set_header If-Range $http_if_range;
