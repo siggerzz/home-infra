@@ -188,7 +188,7 @@ spec:
       tls:
         - hosts:
             - *host
-      secretName: grafana-tls
+          secretName: grafana-tls
     persistence:
       enabled: false
     testFramework:
