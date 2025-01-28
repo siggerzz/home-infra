@@ -184,16 +184,11 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
-        - host: grafana.${SECRET_DOMAIN}
-          paths:
-            - path: /
-              service:
-                identifier: app
-                port: http
+        - &host "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts:
-            - grafana.${SECRET_DOMAIN}
-          secretName: grafana-tls
+            - *host
+      secretName: grafana-tls
     persistence:
       enabled: false
     testFramework:
