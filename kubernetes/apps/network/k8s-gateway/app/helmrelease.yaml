@@ -32,3 +32,14 @@ spec:
         lbipam.cilium.io/ips: "192.168.1.21"
       externalTrafficPolicy: Cluster
     watchedResources: ["Ingress", "Service"]
+    metrics:
+      enabled: true
+      port: 9153
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: metrics
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: metrics
