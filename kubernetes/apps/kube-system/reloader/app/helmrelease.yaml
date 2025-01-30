@@ -25,6 +25,9 @@ spec:
     fullnameOverride: reloader
     reloader:
       readOnlyRootFileSystem: true
+      deployment:
+        strategy: RollingUpdate
+        revisionHistoryLimit: 3
       podMonitor:
         enabled: true
         namespace: "{{ .Release.Namespace }}"

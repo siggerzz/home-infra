@@ -24,6 +24,9 @@ spec:
   values:
     fullnameOverride: ingress-nginx-internal
     controller:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3
       service:
         annotations:
           lbipam.cilium.io/ips: "192.168.1.20"

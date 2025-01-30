@@ -18,6 +18,8 @@ spec:
     controllers:
       main:
         type: statefulset
+        strategy: RollingUpdate
+        revisionHistoryLimit: 3
         containers:
           main:
             image:

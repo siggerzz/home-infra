@@ -18,6 +18,8 @@ spec:
   values:
     controllers:
       sabnzbd:
+        strategy: RollingUpdate
+        revisionHistoryLimit: 3
         containers:
           app:
             image:

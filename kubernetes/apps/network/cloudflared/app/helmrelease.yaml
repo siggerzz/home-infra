@@ -25,6 +25,7 @@ spec:
     controllers:
       cloudflared:
         strategy: RollingUpdate
+        revisionHistoryLimit: 3
         annotations:
           reloader.stakater.com/auto: "true"
         containers:

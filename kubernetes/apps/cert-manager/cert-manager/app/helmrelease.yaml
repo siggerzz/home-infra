@@ -30,3 +30,15 @@ spec:
       enabled: true
       servicemonitor:
         enabled: true
+    deployment:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3
+    cainjector:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3
+    webhook:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3

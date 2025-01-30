@@ -21,6 +21,10 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
+  values:
+    operator:
+      rollOutPods: true
+      revisionHistoryLimit: 3
   valuesFrom:
     - kind: ConfigMap
       name: cilium-helm-values

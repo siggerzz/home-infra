@@ -21,3 +21,8 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
+  values:
+    deployment:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3

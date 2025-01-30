@@ -22,6 +22,11 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  values:
+    deployment:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3
   valuesFrom:
     - kind: ConfigMap
       name: coredns-helm-values

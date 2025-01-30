@@ -27,9 +27,15 @@ spec:
   values:
     master:
       replicaCount: 1
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3
       serviceMonitor:
         enabled: true
     worker:
+      strategy:
+        type: RollingUpdate
+      revisionHistoryLimit: 3
       config:
         core:
           labelSources: ["pci", "system", "usb"]

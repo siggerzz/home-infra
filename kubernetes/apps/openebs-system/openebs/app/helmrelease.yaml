@@ -22,6 +22,11 @@ spec:
     remediation:
       retries: 3
   values:
+    localpv-provisioner:
+      deployment:
+        strategy:
+          type: RollingUpdate
+        revisionHistoryLimit: 3
     engines:
       local:
         lvm:

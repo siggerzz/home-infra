@@ -22,6 +22,10 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  values:
+    deployment:
+      strategy: RollingUpdate
+      revisionHistoryLimit: 3
   valuesFrom:
     - kind: ConfigMap
       name: flux-operator-helm-values
