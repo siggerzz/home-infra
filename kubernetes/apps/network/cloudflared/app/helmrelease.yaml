@@ -85,6 +85,7 @@ spec:
           http:
             port: *port
     serviceMonitor:
+      enabled: true
       app:
         serviceName: cloudflared
         endpoints:
