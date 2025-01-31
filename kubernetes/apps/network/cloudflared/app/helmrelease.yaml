@@ -85,7 +85,6 @@ spec:
           http:
             port: *port
     serviceMonitor:
-      enabled: true
       app:
         serviceName: cloudflared
         endpoints:
@@ -93,7 +92,7 @@ spec:
             scheme: http
             path: /metrics
             interval: 1m
-            scrapeTimeout: 10s
+            scrapeTimeout: 30s
     persistence:
       config:
         type: configMap
