@@ -93,6 +93,9 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 30s
+        labels:
+          app: cloudflared
+          release: kube-prometheus-stack
     persistence:
       config:
         type: configMap
