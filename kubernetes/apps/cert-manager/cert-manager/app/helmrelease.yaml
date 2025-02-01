@@ -30,9 +30,3 @@ spec:
       enabled: true
       servicemonitor:
         enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack
-        endpoints:
-          - port: metrics
-            path: /metrics
-            interval: 1m
