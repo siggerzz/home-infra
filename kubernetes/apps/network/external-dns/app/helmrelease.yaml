@@ -50,5 +50,9 @@ spec:
       enabled: true
       additionalLabels:
         release: kube-prometheus-stack
+      endpoints:
+        - port: http
+          path: /metrics
+          interval: 1m
     podAnnotations:
       secret.reloader.stakater.com/reload: external-dns-secret
