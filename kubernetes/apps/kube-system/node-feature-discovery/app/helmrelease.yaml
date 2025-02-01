@@ -27,14 +27,6 @@ spec:
   values:
     master:
       replicaCount: 1
-      serviceMonitor:
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack
-        endpoints:
-          - port: 8081
-            path: /metrics
-            interval: 1m
     worker:
       config:
         core:
