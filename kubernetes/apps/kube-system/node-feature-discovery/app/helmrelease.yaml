@@ -32,7 +32,7 @@ spec:
         additionalLabels:
           release: kube-prometheus-stack
         endpoints:
-          - port: metrics
+          - port: 8081
             path: /metrics
             interval: 1m
     worker:
