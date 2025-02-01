@@ -81,8 +81,7 @@ spec:
         server: ${SECRET_NFS_DOMAIN}
         path: /mnt/user/Media
         globalMounts:
-          - path: /media/Downloads/sabnzbd
-            subPath: Downloads/sabnzbd
+          - path: /media
       incomplete:
         enabled: true
         type: emptyDir
