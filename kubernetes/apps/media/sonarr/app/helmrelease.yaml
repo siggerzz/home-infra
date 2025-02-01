@@ -95,10 +95,8 @@ spec:
     persistence:
       config:
         existingClaim: sonarr
-      config-cache:
-        existingClaim: sonarr-cache
         globalMounts:
-          - path: /config/MediaCover
+          - path: /config
       scripts:
         type: configMap
         name: sonarr-configmap
