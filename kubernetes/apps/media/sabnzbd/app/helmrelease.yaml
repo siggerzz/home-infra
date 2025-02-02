@@ -17,8 +17,68 @@ spec:
         namespace: flux-system
   values:
     controllers:
-      sabnzbd:
+      main:
         containers:
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.38.0
+            env:
+              - name: TZ
+                valueFrom:
+                  secretKeyRef:
+                    name: sabnzbd-secret
+                    key: TZ
+              - name: VPN_SERVICE_PROVIDER
+                valueFrom:
+                  secretKeyRef:
+                    name: sabnzbd-secret
+                    key: VPN_SERVICE_PROVIDER
+              - name: VPN_TYPE
+                valueFrom:
+                  secretKeyRef:
+                    name: sabnzbd-secret
+                    key: VPN_TYPE
+              - name: WIREGUARD_PRIVATE_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: sabnzbd-secret
+                    key: WIREGUARD_PRIVATE_KEY
+              - name: WIREGUARD_ADDRESSES
+                valueFrom:
+                  secretKeyRef:
+                    name: sabnzbd-secret
+                    key: WIREGUARD_ADDRESSES
+              - name: SERVER_COUNTRIES
+                valueFrom:
+                  secretKeyRef:
+                    name: sabnzbd-secret
+                    key: SERVER_COUNTRIES
+            securityContext:
+              capabilities:
+                add: ["NET_ADMIN"]
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: 8000
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: 8000
+                  failureThreshold: 30
+                  periodSeconds: 10
           app:
             image:
               repository: ghcr.io/onedr0p/sabnzbd
@@ -52,7 +112,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: sabnzbd
+        controller: main
         ports:
           http:
             port: *port
