@@ -99,8 +99,6 @@ spec:
           - secretRef:
               name: sabnzbd-vpn-secret
         env:
-          TZ: ${SECRET_TZ}
-          VPN_SERVICE_PROVIDER: ${SECRET_VPN_SERVICE_PROVIDER}
           VPN_TYPE: wireguard
           FIREWALL_OUTBOUND_SUBNETS: "10.96.0.0/12"
           DOT: "off"
@@ -112,10 +110,6 @@ spec:
           HTTPPROXY_STEALTH: "on"
           HTTPPROXY_LOG: "on"
           SHADOWSOCKS: "off"
-          SERVER_CITIES: ${SECRET_SERVER_CITIES}
-          WIREGUARD_PRIVATE_KEY: ${SECRET_WIREGUARD_PRIVATE_KEY}
-          WIREGUARD_ADDRESSES: ${SECRET_WIREGUARD_ADDRESSES}
-
         ports:
           - containerPort: 8888
             protocol: TCP
