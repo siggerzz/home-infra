@@ -56,7 +56,11 @@ spec:
                   name: sabnzbd-vpn-secret
             env:
               VPN_TYPE: wireguard
-              FIREWALL_OUTBOUND_SUBNETS: "10.96.0.0/12"
+              FIREWALL_VPN_INPUT_PORTS: "80"
+              FIREWALL_INPUT_PORTS: "80"
+              FIREWALL_OUTBOUND_SUBNETS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+              FIREWALL_DEBUG: "on"
+              FIREWALL_ALLOW_LOCAL_NET: "on"
               DOT: "off"
               DNS_KEEP_NAMESERVER: "off"
               DNS_ADDRESS: "10.96.0.10"
@@ -66,6 +70,7 @@ spec:
               HTTPPROXY_STEALTH: "on"
               HTTPPROXY_LOG: "on"
               SHADOWSOCKS: "off"
+              LOG_LEVEL: debug
             ports:
               - containerPort: 8888
                 protocol: TCP
