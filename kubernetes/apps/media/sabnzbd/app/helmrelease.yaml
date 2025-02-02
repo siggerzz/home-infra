@@ -55,8 +55,13 @@ spec:
                     name: sabnzbd-secret
                     key: SERVER_COUNTRIES
             securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+              runAsGroup: 1000
               capabilities:
-                add: ["NET_ADMIN"]
+                add: 
+                  - NET_ADMIN
+                  - SYS_MODULE
             probes:
               liveness: &probes
                 enabled: true
