@@ -91,3 +91,38 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /tmp
+
+    sidecars:
+      vpn:
+        image: ghcr.io/qdm12/gluetun:v3.39.0
+        envFrom:
+          - secretRef:
+              name: sabnzbd-vpn-secret
+        env:
+          TZ: ${SECRET_TZ}
+          VPN_SERVICE_PROVIDER: ${SECRET_VPN_SERVICE_PROVIDER}
+          VPN_TYPE: wireguard
+          FIREWALL_OUTBOUND_SUBNETS: "10.96.0.0/12"
+          DOT: "off"
+          DNS_KEEP_NAMESERVER: "off"
+          DNS_ADDRESS: "10.96.0.10"
+          BLOCK_MALICIOUS: "off"
+          HTTPPROXY: "on"
+          HTTPPROXY_LISTENING_ADDRESS: ":8888"
+          HTTPPROXY_STEALTH: "on"
+          HTTPPROXY_LOG: "on"
+          SHADOWSOCKS: "off"
+          SERVER_CITIES: ${SECRET_SERVER_CITIES}
+          WIREGUARD_PRIVATE_KEY: ${SECRET_WIREGUARD_PRIVATE_KEY}
+          WIREGUARD_ADDRESSES: ${SECRET_WIREGUARD_ADDRESSES}
+
+        ports:
+          - containerPort: 8888
+            protocol: TCP
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_MODULE
