@@ -70,6 +70,9 @@ spec:
               - containerPort: 8888
                 protocol: TCP
             securityContext:
+              runAsNonRoot: false
+              runAsUser: 0
+              runAsGroup: 0
               capabilities:
                 add:
                   - NET_ADMIN
