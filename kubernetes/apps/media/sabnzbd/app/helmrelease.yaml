@@ -43,6 +43,39 @@ spec:
                 memory: 256Mi
               limits:
                 memory: 3Gi
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.39.0
+            envFrom:
+              - secretRef:
+                  name: sabnzbd-vpn-secret
+            env:
+              VPN_TYPE: wireguard
+              FIREWALL_OUTBOUND_SUBNETS: "10.96.0.0/12"
+              DOT: "off"
+              DNS_KEEP_NAMESERVER: "off"
+              DNS_ADDRESS: "10.96.0.10"
+              BLOCK_MALICIOUS: "off"
+              HTTPPROXY: "on"
+              HTTPPROXY_LISTENING_ADDRESS: ":8888"
+              HTTPPROXY_STEALTH: "on"
+              HTTPPROXY_LOG: "on"
+              SHADOWSOCKS: "off"
+            ports:
+              - containerPort: 8888
+                protocol: TCP
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+                  - SYS_MODULE
+              allowPrivilegeEscalation: false
+            resources:
+              requests:
+                kernel.org/tun: 1
+              limits:
+                kernel.org/tun: 1
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -91,32 +124,3 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /tmp
-
-    sidecars:
-      vpn:
-        image: ghcr.io/qdm12/gluetun:v3.39.0
-        envFrom:
-          - secretRef:
-              name: sabnzbd-vpn-secret
-        env:
-          VPN_TYPE: wireguard
-          FIREWALL_OUTBOUND_SUBNETS: "10.96.0.0/12"
-          DOT: "off"
-          DNS_KEEP_NAMESERVER: "off"
-          DNS_ADDRESS: "10.96.0.10"
-          BLOCK_MALICIOUS: "off"
-          HTTPPROXY: "on"
-          HTTPPROXY_LISTENING_ADDRESS: ":8888"
-          HTTPPROXY_STEALTH: "on"
-          HTTPPROXY_LOG: "on"
-          SHADOWSOCKS: "off"
-        ports:
-          - containerPort: 8888
-            protocol: TCP
-        securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          capabilities:
-            add:
-              - NET_ADMIN
-              - SYS_MODULE
