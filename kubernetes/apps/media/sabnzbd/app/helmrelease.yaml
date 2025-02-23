@@ -28,11 +28,14 @@ spec:
               SABNZBD__PORT: &port 80
               SABNZBD__HOST_WHITELIST_ENTRIES: >-
                 sabnzbd,
-                sabnzbd.default,
-                sabnzbd.default.svc,
-                sabnzbd.default.svc.cluster,
-                sabnzbd.default.svc.cluster.local,
+                sabnzbd.media,
+                sabnzbd.media.svc,
+                sabnzbd.media.svc.cluster,
+                sabnzbd.media.svc.cluster.local,
                 sabnzbd.${SECRET_DOMAIN}
+              HTTP_PROXY: "http://localhost:8888"
+              HTTPS_PROXY: "http://localhost:8888"
+              NO_PROXY: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,127.0.0.1,localhost"
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
