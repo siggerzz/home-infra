@@ -32,10 +32,9 @@ spec:
                 sabnzbd.media.svc,
                 sabnzbd.media.svc.cluster,
                 sabnzbd.media.svc.cluster.local,
-                sabnzbd.${SECRET_DOMAIN}
-              HTTP_PROXY: "http://localhost:8888"
-              HTTPS_PROXY: "http://localhost:8888"
-              NO_PROXY: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,127.0.0.1,localhost"
+                sabnzbd.${SECRET_DOMAIN},
+                "*",
+                "localhost:8080"
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
@@ -50,43 +49,6 @@ spec:
                 memory: 256Mi
               limits:
                 memory: 3Gi
-          gluetun:
-            image:
-              repository: ghcr.io/qdm12/gluetun
-              tag: v3.40.0
-            envFrom:
-              - secretRef:
-                  name: sabnzbd-vpn-secret
-            env:
-              VPN_TYPE: wireguard
-              FIREWALL_VPN_INPUT_PORTS: "80"
-              FIREWALL_INPUT_PORTS: "80"
-              FIREWALL_OUTBOUND_SUBNETS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
-              FIREWALL_ALLOW_LOCAL_NET: "on"
-              FIREWALL_INBOUND_SUBNETS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
-              FIREWALL_DEBUG: "on"
-              DOT: "off"
-              DNS_KEEP_NAMESERVER: "off"
-              DNS_ADDRESS: "10.96.0.10"
-              BLOCK_MALICIOUS: "off"
-              HTTPPROXY: "on"
-              HTTPPROXY_LISTENING_ADDRESS: ":8888"
-              HTTPPROXY_STEALTH: "on"
-              HTTPPROXY_LOG: "on"
-              SHADOWSOCKS: "off"
-              LOG_LEVEL: debug
-            ports:
-              - containerPort: 8888
-                protocol: TCP
-            securityContext:
-              privileged: true
-              capabilities:
-                add:
-                  - NET_ADMIN
-                  - SYS_MODULE
-              runAsGroup: 0
-              runAsNonRoot: false
-              runAsUser: 0
     service:
       app:
         controller: sabnzbd
