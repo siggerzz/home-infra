@@ -40,7 +40,7 @@ spec:
               READARR__AUTH__REQUIRED: DisabledForLocalAddresses
               READARR__LOG__DBENABLED: "False"
               READARR__LOG__LEVEL: info
-              READARR__PORT: &port 80
+              READARR__PORT: &port 8787
               READARR__APPLICATION_URL: "https://readarr.${SECRET_DOMAIN}"
               TZ: Europe/London
 
