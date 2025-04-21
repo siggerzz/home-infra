@@ -16,12 +16,14 @@ spec:
         namespace: flux-system
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
       strategy: rollback
-      retries: 3 
+      retries: 3
+    timeout: 10m
+  timeout: 10m
   values:
     controllers:
       home-assistant:
@@ -45,30 +47,6 @@ spec:
                 cpu: 10m
               limits:
                 memory: 2Gi
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: &port 8123
-                  initialDelaySeconds: 30
-                  periodSeconds: 10
-                  timeoutSeconds: 5
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: *port
-                  initialDelaySeconds: 30
-                  timeoutSeconds: 5
-                  periodSeconds: 10
-                  failureThreshold: 30
           code-server:
             image:
               repository: ghcr.io/coder/code-server
@@ -98,7 +76,7 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: *port
+            port: 8123
           code-server:
             port: 12321
     ingress:
