@@ -33,6 +33,16 @@ spec:
               TZ: Europe/London
               QBT_WEBUI_PORT: &port 80
               QBT_TORRENTING_PORT: &torrentPort 50413
+              QBT_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: qbittorrent
+                    key: QBT_USERNAME
+              QBT_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: qbittorrent
+                    key: QBT_PASSWORD
 
             probes:
               liveness:
