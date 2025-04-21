@@ -33,9 +33,6 @@ spec:
               TZ: Europe/London
               QBT_WEBUI_PORT: &port 80
               QBT_TORRENTING_PORT: &torrentPort 50413
-              QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
-              QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
-                10.0.0.0/8, 192.168.0.0/16
 
             probes:
               liveness:
