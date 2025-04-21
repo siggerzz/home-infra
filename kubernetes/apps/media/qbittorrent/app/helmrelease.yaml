@@ -34,7 +34,7 @@ spec:
               QBT_WEBUI_PORT: &port 80
               QBT_TORRENTING_PORT: &torrentPort 50413
             probes:
-              liveness: &probes
+              liveness:
                 enabled: true
               readiness:
                 enabled: true
