@@ -114,7 +114,7 @@ spec:
         server: ${SECRET_NFS_DOMAIN}
         path: /mnt/user/Media
         globalMounts:
-          - path: /Downloads/qbittorrent
+          - path: /media/Downloads/qbittorrent
             subPath: Downloads/qbittorrent
       tmp:
         type: emptyDir
