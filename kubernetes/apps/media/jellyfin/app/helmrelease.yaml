@@ -37,7 +37,7 @@ spec:
         className: external
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/icon: mdi-jellyfin
+          gethomepage.dev/icon: jellyfin
           gethomepage.dev/name: Jellyfin
           gethomepage.dev/group: Media
           gethomepage.dev/widget.type: jellyfin
