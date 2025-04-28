@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.26.1-standalone-strict/configmap-v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage-config
+  labels:
+    app.kubernetes.io/name: homepage
+data:
+  bookmarks.yaml: |
+    ---
+  docker.yaml: |
+    ---
+  kubernetes.yaml: |
+    ---
+    mode: cluster
+
+  services.yaml: |
+    ---
+
+  settings.yaml: |
+    ---
+    title: Home Dashboard
+    theme: dark
+    color: slate
+    headerStyle: boxedWidgets
+    target: _blank
+    layout:
+      Home:
+        style: row
+        columns: 3
+        icon: mdi-home
+      Media:
+        style: row
+        columns: 3
+        icon: mdi-multimedia
+    quicklaunch:
+      searchDescription: true
+      hideInternetSearch: true
+      hideVisitURL: true
+
+  widgets.yaml: |
+    - resources:
+        backend: kubernetes
+        cpu: true
+        expanded: true
+        memory: true
+    - kubernetes:
+        cluster:
+          cpu: true
+          memory: true
+          show: true
+          showLabel: true
+        nodes:
+          cpu: true
+          memory: true
+          show: false
+          showLabel: true
