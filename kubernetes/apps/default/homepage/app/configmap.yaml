@@ -51,6 +51,10 @@ data:
         style: row
         columns: 3
         icon: mdi-play-box
+      Network:
+        style: row
+        columns: 3
+        icon: mdi-lan-connect
     quicklaunch:
       searchDescription: true
       hideInternetSearch: true
