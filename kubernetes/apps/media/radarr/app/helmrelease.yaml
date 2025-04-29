@@ -82,6 +82,13 @@ spec:
       app:
         className: internal
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: radarr
+          gethomepage.dev/name: Radarr
+          gethomepage.dev/group: Arr
+          gethomepage.dev/widget.type: radarr
+          gethomepage.dev/widget.url: http://radarr.media.svc.cluster.local:80
+          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_RADARR_API_KEY}}" }}'
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "radarr.${SECRET_DOMAIN}"

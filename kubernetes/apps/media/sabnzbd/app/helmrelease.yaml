@@ -60,6 +60,13 @@ spec:
         enabled: true
         className: internal
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: sabnzbd
+          gethomepage.dev/name: Sabnzbd
+          gethomepage.dev/group: Downloaders
+          gethomepage.dev/widget.type: sabnzbd
+          gethomepage.dev/widget.url: http://sabnzbd.media.svc.cluster.local:80
+          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_SABNZBD_API_KEY}}" }}'
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
