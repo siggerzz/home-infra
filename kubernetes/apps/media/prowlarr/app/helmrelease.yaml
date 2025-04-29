@@ -79,6 +79,13 @@ spec:
       app:
         className: internal
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: prowlarr
+          gethomepage.dev/name: Prowlarr
+          gethomepage.dev/group: Arr
+          gethomepage.dev/widget.type: prowlarr
+          gethomepage.dev/widget.url: http://prowlarr.media.svc.cluster.local:80
+          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}" }}'
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "prowlarr.${SECRET_DOMAIN}"

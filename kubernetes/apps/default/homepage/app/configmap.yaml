@@ -26,6 +26,14 @@ data:
     headerStyle: boxedWidgets
     target: _blank
     layout:
+      Arr:
+        style: row
+        columns: 3
+        icon: mdi-pirate
+      Downloaders:
+        style: row
+        columns: 3
+        icon: mdi-download-circle
       Home:
         style: row
         columns: 3
@@ -33,7 +41,7 @@ data:
       Media:
         style: row
         columns: 3
-        icon: mdi-multimedia
+        icon: mdi-play-box
     quicklaunch:
       searchDescription: true
       hideInternetSearch: true
@@ -54,5 +62,5 @@ data:
         nodes:
           cpu: true
           memory: true
-          show: false
+          show: true
           showLabel: true
