@@ -23,7 +23,7 @@ data:
           href: http://${HOMEPAGE_VAR_UNIFI_HOST}
           description: Unifi Controller
           widget:
-            apiKey: ${HOMEPAGE_VAR_UNIFI_API_KEY}
+            key: ${HOMEPAGE_VAR_UNIFI_API_KEY}
             type: unifi
             url: http://${HOMEPAGE_VAR_UNIFI_HOST}
 
