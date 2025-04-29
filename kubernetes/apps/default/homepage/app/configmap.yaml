@@ -20,12 +20,12 @@ data:
     - Network:
       - Unifi:
           icon: si-ubiquiti
-          href: http://${HOMEPAGE_VAR_UNIFI_HOST}
+          href: https://${HOMEPAGE_VAR_UNIFI_HOST}
           description: Unifi Controller
           widget:
             key: ${HOMEPAGE_VAR_UNIFI_API_KEY}
             type: unifi
-            url: http://${HOMEPAGE_VAR_UNIFI_HOST}
+            url: https://${HOMEPAGE_VAR_UNIFI_HOST}
 
   settings.yaml: |
     ---
