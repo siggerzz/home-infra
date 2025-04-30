@@ -19,6 +19,26 @@ spec:
     controllers:
       sabnzbd:
         containers:
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: latest
+              pullPolicy: Always
+            env:
+              - name: TZ
+                value: Europe/London
+              - name: VPN_SERVICE_PROVIDER
+                value: "${SECRET_VPN_SERVICE_PROVIDER}"
+              - name: OPENVPN_USER
+                value: "${SECRET_VPN_USERNAME}"
+              - name: OPENVPN_PASSWORD
+                value: "${SECRET_VPN_PASSWORD}"
+            securityContext:
+              capabilities:
+                add: ["NET_ADMIN"]
+            volumeMounts:
+              - name: gluetun-config
+                mountPath: /gluetun
           app:
             image:
               repository: ghcr.io/home-operations/sabnzbd
@@ -105,3 +125,10 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /tmp
+      gluetun-config:
+        enabled: true
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /gluetun
