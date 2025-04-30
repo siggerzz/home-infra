@@ -32,12 +32,6 @@ spec:
       homepage:
         annotations:
           reloader.stakater.com/auto: "true"
-        podSpec:
-          dnsConfig:
-            nameservers:
-              - 192.168.1.21
-            searches:
-              - ${SECRET_DOMAIN}
         containers:
           app:
             image:
@@ -55,6 +49,12 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 512Mi
+    defaultPodOptions:
+      dnsConfig:
+        nameservers:
+          - 192.168.1.21
+        searches:
+          - ${SECRET_DOMAIN}
     service:
       app:
         controller: *app
