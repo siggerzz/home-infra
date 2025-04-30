@@ -32,11 +32,12 @@ spec:
       homepage:
         annotations:
           reloader.stakater.com/auto: "true"
-        dnsConfig:
-          nameservers:
-            - 192.168.1.21
-          searches:
-            - ${SECRET_DOMAIN}
+        podSpec:
+          dnsConfig:
+            nameservers:
+              - 192.168.1.21
+            searches:
+              - ${SECRET_DOMAIN}
         containers:
           app:
             image:
