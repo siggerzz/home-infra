@@ -29,6 +29,10 @@ servers:
         configBlock: |-
           pods insecure
           fallthrough in-addr.arpa ip6.arpa
+      - name: hosts
+        parameters: /etc/coredns/hosts
+        configBlock: |-
+          192.168.1.1 unifi.${SECRET_DOMAIN}
       - name: forward
         parameters: . /etc/resolv.conf
       - name: cache
