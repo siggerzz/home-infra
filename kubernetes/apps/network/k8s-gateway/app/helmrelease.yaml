@@ -43,3 +43,7 @@ spec:
       httpGet:
         path: /ready
         port: metrics
+    dnsRecords:
+      - name: "unifi"
+        type: "A"
+        target: "192.168.1.1"
