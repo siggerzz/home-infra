@@ -38,7 +38,7 @@ data:
     - Observability:
         - Grafana:
             icon: si-grafana
-            href: grafana.{{HOMEPAGE_VAR_SECRET_DOMAIN}}
+            href: https://grafana.{{HOMEPAGE_VAR_SECRET_DOMAIN}}
             description: Grafana
             widget:
               type: grafana
