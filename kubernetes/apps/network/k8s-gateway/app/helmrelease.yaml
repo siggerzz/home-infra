@@ -43,3 +43,15 @@ spec:
       httpGet:
         path: /ready
         port: metrics
+    extraVolumeMounts:
+      - name: hosts-config
+        mountPath: /etc/coredns/custom.hosts
+        subPath: custom.hosts
+    extraVolumes:
+      - name: hosts-config
+        configMap:
+          name: k8s-gateway-hosts
+    extraConfig: |
+      hosts /etc/coredns/custom.hosts ${SECRET_DOMAIN} {
+        fallthrough
+      }
