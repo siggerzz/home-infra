@@ -24,6 +24,8 @@ spec:
   values:
     controllers:
       qbittorrent:
+        labels:
+          vpn-routed: "true"
         containers:
           app:
             image:

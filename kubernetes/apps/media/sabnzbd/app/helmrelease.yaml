@@ -18,6 +18,8 @@ spec:
   values:
     controllers:
       sabnzbd:
+        labels:
+          vpn-routed: "true"
         containers:
           app:
             image:
