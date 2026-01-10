@@ -40,7 +40,7 @@ spec:
                 spec:
                   httpGet:
                     path: /
-                    port: &httpPort 80
+                    port: &httpPort 3000
                   initialDelaySeconds: 30
                   periodSeconds: 10
                   timeoutSeconds: 5
@@ -95,7 +95,7 @@ spec:
           gethomepage.dev/name: AdGuard Home
           gethomepage.dev/group: Network
           gethomepage.dev/widget.type: adguard
-          gethomepage.dev/widget.url: http://adguard.network.svc.cluster.local:80
+          gethomepage.dev/widget.url: http://adguard.network.svc.cluster.local:3000
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "adguard.${SECRET_DOMAIN}"
