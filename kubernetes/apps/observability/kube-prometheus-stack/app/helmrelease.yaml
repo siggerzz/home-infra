@@ -25,9 +25,12 @@ spec:
   values:
     crds:
       enabled: false
-    
+
     alertmanager:
       enabled: false
+
+    prometheusOperator:
+      enabled: true
 
     prometheus:
       prometheusSpec:
