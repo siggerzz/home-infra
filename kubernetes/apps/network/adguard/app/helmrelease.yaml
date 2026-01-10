@@ -35,27 +35,9 @@ spec:
               TZ: Europe/London
             probes:
               liveness:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: &httpPort 3000
-                  initialDelaySeconds: 30
-                  periodSeconds: 10
-                  timeoutSeconds: 5
-                  failureThreshold: 5
+                enabled: false
               readiness:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: *httpPort
-                  initialDelaySeconds: 30
-                  periodSeconds: 10
-                  timeoutSeconds: 5
-                  failureThreshold: 5
+                enabled: false
             resources:
               requests:
                 cpu: 50m
@@ -72,7 +54,7 @@ spec:
         controller: adguard
         ports:
           http:
-            port: *httpPort
+            port: 3000
       dns:
         controller: adguard
         type: LoadBalancer
