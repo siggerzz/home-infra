@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.10.0
+talosVersion: v1.12.1
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.32.1
 
@@ -25,7 +25,8 @@ cniConfig:
 nodes:
   - hostname: "glados-c01"
     ipAddress: "192.168.1.11"
-    installDisk: "/dev/sda"
+    installDiskSelector:
+      model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee
@@ -44,7 +45,8 @@ nodes:
           ip: "192.168.1.10"
   - hostname: "glados-w01"
     ipAddress: "192.168.1.12"
-    installDisk: "/dev/sda"
+    installDiskSelector:
+      model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee
@@ -63,7 +65,8 @@ nodes:
           ip: "192.168.1.10"
   - hostname: "glados-w02"
     ipAddress: "192.168.1.13"
-    installDisk: "/dev/sda"
+    installDiskSelector:
+      model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee
@@ -106,6 +109,7 @@ controlPlane:
         officialExtensions:
           - siderolabs/i915
   patches:
-    - "@./patches/controller/admission-controller-patch.yaml"
+    # Commented out - JSON6902 patches not supported in v1.12+
+    # - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
 
