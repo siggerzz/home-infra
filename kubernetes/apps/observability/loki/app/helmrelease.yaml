@@ -43,6 +43,9 @@ spec:
         chunk_encoding: snappy
       querier:
         max_concurrent: 4
+      limits_config:
+        volume_enabled: true
+        retention_period: 744h  # 31 days
     singleBinary:
       replicas: 1
       persistence:
