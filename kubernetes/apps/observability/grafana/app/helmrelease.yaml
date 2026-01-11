@@ -63,7 +63,7 @@ spec:
             type: loki
             uid: loki
             access: proxy
-            url: http://loki-gateway.observability.svc.cluster.local/loki/api/v1
+            url: http://loki-gateway.observability.svc.cluster.local
             jsonData:
               maxLines: 1000
           - name: Alertmanager
