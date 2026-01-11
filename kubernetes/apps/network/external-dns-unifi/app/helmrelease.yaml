@@ -59,6 +59,7 @@ spec:
     extraArgs:
       - --ingress-class=internal
       - --ignore-ingress-tls-spec
+      - --log-level=debug
     policy: sync
     sources: ["ingress", "service"]
     txtPrefix: k8s.
