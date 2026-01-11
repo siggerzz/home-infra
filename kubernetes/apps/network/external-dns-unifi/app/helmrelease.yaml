@@ -59,8 +59,8 @@ spec:
     extraArgs:
       - --ingress-class=internal
       - --ignore-ingress-tls-spec
-      - --log-level=debug
     policy: sync
+    logLevel: debug
     sources: ["ingress", "service"]
     txtPrefix: k8s.
     txtOwnerId: unifi
