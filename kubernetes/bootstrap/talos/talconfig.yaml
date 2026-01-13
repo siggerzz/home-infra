@@ -29,7 +29,7 @@ nodes:
       model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee
+    talosImageURL: factory.talos.dev/metal-installer/6170f9e5c119a8d9fc1b57cff00af0425a93fa650d9c0848595f3d8c3fe15c77
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -49,7 +49,7 @@ nodes:
       model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee
+    talosImageURL: factory.talos.dev/metal-installer/6170f9e5c119a8d9fc1b57cff00af0425a93fa650d9c0848595f3d8c3fe15c77
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -69,7 +69,7 @@ nodes:
       model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee
+    talosImageURL: factory.talos.dev/metal-installer/6170f9e5c119a8d9fc1b57cff00af0425a93fa650d9c0848595f3d8c3fe15c77
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -100,6 +100,8 @@ worker:
       systemExtensions:
         officialExtensions:
           - siderolabs/i915
+          - siderolabs/intel-ucode
+          - siderolabs/util-linux-tools
 
 # Controller patches
 controlPlane:
@@ -108,6 +110,8 @@ controlPlane:
       systemExtensions:
         officialExtensions:
           - siderolabs/i915
+          - siderolabs/intel-ucode
+          - siderolabs/util-linux-tools
   patches:
     # Commented out - JSON6902 patches not supported in v1.12+
     # - "@./patches/controller/admission-controller-patch.yaml"
