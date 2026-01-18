@@ -39,6 +39,19 @@ spec:
               HASS_HTTP_TRUSTED_PROXY_2: 10.69.0.0/16
               HASS_HTTP_TRUSTED_PROXY_3: 10.96.0.0/16
               TZ: Europe/London
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &app-port 8123
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -77,7 +90,7 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: 8123
+            port: *app-port
           code-server:
             port: 12321
     ingress:
