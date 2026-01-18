@@ -77,7 +77,7 @@ spec:
           gethomepage.dev/name: AdGuard Home
           gethomepage.dev/group: Network
           gethomepage.dev/widget.type: adguard
-          gethomepage.dev/widget.url: http://adguard.network.svc.cluster.local:3000
+          gethomepage.dev/widget.url: http://adguard-app.network.svc.cluster.local:3000
           gethomepage.dev/widget.username: '{{ "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}" }}'
           gethomepage.dev/widget.password: '{{ "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}" }}'
           cert-manager.io/cluster-issuer: "letsencrypt-production"
