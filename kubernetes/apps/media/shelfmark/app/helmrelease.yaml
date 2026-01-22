@@ -1,16 +1,15 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: readarr
-  namespace: media
+  name: shelfmark
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
       version: 4.6.0
-      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,32 +24,24 @@ spec:
       retries: 3
   values:
     controllers:
-      readarr:
+      shelfmark:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/home-operations/readarr
-              tag: 0.4.18.2805@sha256:8f7551205fbdccd526db23a38a6fba18b0f40726e63bb89be0fb2333ff4ee4cd
+              repository: ghcr.io/calibrain/shelfmark
+              tag: v1.0.1@sha256:1efbbd45ea434cb4f5abde217e19c35280ea1de9eb2c0baa37e6b8cddac32fae
             env:
-              READARR__INSTANCE_NAME: Readarr
-              READARR_APP_THEME: dark
-              READARR__AUTH__METHOD: External
-              READARR__AUTH__REQUIRED: DisabledForLocalAddresses
-              READARR__LOG__DBENABLED: "False"
-              READARR__LOG__LEVEL: info
-              READARR__PORT: &port 8787
-              READARR__APPLICATION_URL: "https://readarr.${SECRET_DOMAIN}"
+              FLASK_PORT: &port 80
               TZ: Europe/London
-
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /ping
+                    path: /api/health
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -65,7 +56,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                memory: 2Gi
+                memory: 1Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -76,7 +67,7 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: readarr
+        controller: shelfmark
         ports:
           http:
             port: *port
@@ -85,27 +76,32 @@ spec:
         className: internal
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/icon: readarr
-          gethomepage.dev/name: Readarr
-          gethomepage.dev/group: Arr
-          gethomepage.dev/widget.type: readarr
-          gethomepage.dev/widget.url: http://readarr.media.svc.cluster.local:8787
-          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_READARR_API_KEY}}" }}'
+          gethomepage.dev/icon: calibre-web
+          gethomepage.dev/name: Shelfmark
+          gethomepage.dev/group: Media
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
-          - host: &host "readarr.${SECRET_DOMAIN}"
+          - host: &host "shelfmark.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
         tls:
-        - hosts:
-            - *host
-          secretName: readarr-tls
+          - hosts:
+              - *host
+            secretName: shelfmark-tls
     persistence:
       config:
-        existingClaim: readarr
+        existingClaim: shelfmark
+        globalMounts:
+          - path: /config
+      books:
+        type: nfs
+        server: ${SECRET_NFS_DOMAIN}
+        path: /mnt/user/Media/Books
+        globalMounts:
+          - path: /books
       media:
         type: nfs
         server: ${SECRET_NFS_DOMAIN}
