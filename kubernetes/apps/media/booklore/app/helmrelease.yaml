@@ -37,7 +37,11 @@ spec:
               TZ: Europe/London
               APP_USER_ID: "1000"
               APP_GROUP_ID: "1000"
-              DATABASE_URL: "mysql://booklore:booklore@localhost:3306/booklore"
+              DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: booklore-secret
+                    key: DATABASE_URL
             probes:
               liveness: &probes
                 enabled: true
