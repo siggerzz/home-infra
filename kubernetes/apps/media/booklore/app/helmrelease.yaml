@@ -27,46 +27,102 @@ spec:
       booklore:
         annotations:
           reloader.stakater.com/auto: "true"
-        containers:
-          app:
+        initContainers:
+          nginx-config:
             image:
               repository: ghcr.io/booklore-app/booklore
               tag: v1.18.4@sha256:3fbeb3ba3eb611a3de1d37b2c074da6c97fb469f1ff1022bf95b0d03500e27cf
+            command:
+              - /bin/sh
+              - -c
+            args:
+              - "envsubst '$${BOOKLORE_PORT}' < /etc/nginx/nginx.conf > /config/nginx.conf"
             env:
-              BOOKLORE_PORT: &port 6060
-              TZ: Europe/London
-              APP_USER_ID: "1000"
-              APP_GROUP_ID: "1000"
+              BOOKLORE_PORT: &httpPort 6060
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              runAsUser: 100
+              runAsGroup: 101
+        containers:
+          booklore:
+            image:
+              repository: ghcr.io/booklore-app/booklore
+              tag: v1.18.4@sha256:3fbeb3ba3eb611a3de1d37b2c074da6c97fb469f1ff1022bf95b0d03500e27cf
+            command:
+              - java
+            args:
+              - -jar
+              - /app/app.jar
+            env:
               DATABASE_URL:
                 valueFrom:
                   secretKeyRef:
                     name: booklore-secret
                     key: DATABASE_URL
+              DATABASE_USERNAME: booklore
+              DATABASE_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: booklore-secret
+                    key: MYSQL_PASSWORD
             probes:
-              liveness: &probes
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/healthcheck
+                    port: 8080
+              readiness: *probe
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/healthcheck
+                    port: 8080
+                  failureThreshold: 10
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 2Gi
+          nginx:
+            image:
+              repository: ghcr.io/booklore-app/booklore
+              tag: v1.18.4@sha256:3fbeb3ba3eb611a3de1d37b2c074da6c97fb469f1ff1022bf95b0d03500e27cf
+            command:
+              - nginx
+            args:
+              - -c
+              - /config/nginx.conf
+              - -g
+              - "daemon off;"
+            probes:
+              liveness: &nginxProbe
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
                     path: /
-                    port: *port
-                  initialDelaySeconds: 30
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
+                    port: *httpPort
+              readiness: *nginxProbe
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities:
-                drop:
-                  - ALL
+              readOnlyRootFilesystem: true
+              runAsUser: 100
+              runAsGroup: 101
             resources:
               requests:
-                cpu: 100m
-                memory: 256Mi
+                cpu: 50m
+                memory: 64Mi
               limits:
-                memory: 1Gi
+                memory: 128Mi
           mariadb:
             image:
               repository: mariadb
@@ -108,7 +164,7 @@ spec:
         controller: booklore
         ports:
           http:
-            port: *port
+            port: *httpPort
     ingress:
       app:
         className: internal
@@ -160,14 +216,38 @@ spec:
           booklore:
             mariadb:
               - path: /run/mysqld
+      nginx:
+        type: emptyDir
+        sizeLimit: 200Mi
+        advancedMounts:
+          booklore:
+            nginx:
+              - path: /config
+                subPath: config
+              - path: /var/lib/nginx/logs
+                subPath: log
+              - path: /var/lib/nginx/tmp
+                subPath: tmp
+            nginx-config:
+              - path: /config
+                subPath: config
+      nginx-run:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 100Mi
+        advancedMounts:
+          booklore:
+            nginx:
+              - path: /run/nginx
       tmpfs:
         type: emptyDir
         medium: Memory
         sizeLimit: 100Mi
         advancedMounts:
           booklore:
-            app:
+            booklore:
               - path: /tmp
+                subPath: app
             mariadb:
               - path: /tmp
                 subPath: mysql
