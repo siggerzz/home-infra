@@ -27,6 +27,9 @@ spec:
       booklore:
         annotations:
           reloader.stakater.com/auto: "true"
+        pod:
+          labels:
+            pod-security.kubernetes.io/enforce: privileged
         containers:
           app:
             image:
