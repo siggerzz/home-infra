@@ -81,6 +81,8 @@ spec:
     serviceMonitor:
       app:
         serviceName: unifi-poller
+        labels:
+          release: kube-prometheus-stack
         endpoints:
           - port: http
             scheme: http
