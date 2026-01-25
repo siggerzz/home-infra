@@ -1,5 +1,5 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  $schema: 'https: //docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:recommended',
     'docker:enableMajor',
@@ -7,7 +7,6 @@
     ':dependencyDashboard',
     ':disableRateLimiting',
     ':semanticCommits',
-    ':separatePatchReleases',
   ],
   dependencyDashboard: true,
   dependencyDashboardTitle: 'Renovate Dashboard 🤖',
@@ -15,6 +14,10 @@
     'prEditedNotification',
     'prIgnoreNotification',
   ],
+  // Limit concurrent PRs to avoid overwhelming the repo
+  prConcurrentLimit: 10,
+  // Reduce noise by not creating PRs for very old dependencies immediately
+  minimumReleaseAge: '3 days',
   schedule: [
     'every weekend',
   ],
@@ -23,32 +26,32 @@
   ],
   flux: {
     managerFilePatterns: [
-      '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+      '(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$',
     ],
   },
   'helm-values': {
     managerFilePatterns: [
-      '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+      '(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$',
     ],
   },
   helmfile: {
     managerFilePatterns: [
-      '/(^|/)helmfile\\.ya?ml(?:\\.j2)?$/',
+      '(^|/)helmfile\\.ya?ml(?:\\.j2)?$',
     ],
   },
   kubernetes: {
     managerFilePatterns: [
-      '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+      '(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$',
     ],
   },
   kustomize: {
     managerFilePatterns: [
-      '/(^|/)kustomization\\.ya?ml(?:\\.j2)?$/',
+      '(^|/)kustomization\\.ya?ml(?:\\.j2)?$',
     ],
   },
   pip_requirements: {
     managerFilePatterns: [
-      '/(^|/)[\\w-]*requirements(-\\w+)?\\.(txt|pip)(?:\\.j2)?$/',
+      '(^|/)[\\w-]*requirements(-\\w+)?\\.(txt|pip)(?:\\.j2)?$',
     ],
   },
   packageRules: [
@@ -62,6 +65,74 @@
       automerge: true,
       automergeType: 'branch',
       ignoreTests: true,
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+    },
+    {
+      description: [
+        'Auto-merge safe Helm chart patch updates',
+      ],
+      matchDatasources: [
+        'helm',
+      ],
+      matchUpdateTypes: [
+        'patch',
+      ],
+      automerge: true,
+      automergeType: 'branch',
+      ignoreTests: true,
+    },
+    {
+      description: [
+        'Auto-merge safe Docker image patch and digest updates',
+      ],
+      matchDatasources: [
+        'docker',
+      ],
+      matchUpdateTypes: [
+        'patch',
+        'digest',
+      ],
+      automerge: true,
+      automergeType: 'branch',
+      ignoreTests: true,
+    },
+    {
+      description: [
+        'Group common infrastructure Helm charts',
+      ],
+      groupName: 'infrastructure-helm-charts',
+      matchDatasources: [
+        'helm',
+      ],
+      matchPackagePatterns: [
+        '^coredns$',
+        '^cilium$',
+        '^metrics-server$',
+        '^cert-manager$',
+        '^reloader$',
+        '^external-dns$',
+      ],
+      matchUpdateTypes: [
+        'patch',
+        'minor',
+      ],
+    },
+    {
+      description: [
+        'Group media apps together',
+      ],
+      groupName: 'media-apps',
+      matchPackagePatterns: [
+        'sonarr',
+        'radarr',
+        'prowlarr',
+        'readarr',
+        'sabnzbd',
+        'qbittorrent',
+      ],
       matchUpdateTypes: [
         'minor',
         'patch',
@@ -319,7 +390,7 @@
         'Process YAML custom dependencies',
       ],
       managerFilePatterns: [
-        '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+        '(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$',
       ],
       matchStrings: [
         'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)',
