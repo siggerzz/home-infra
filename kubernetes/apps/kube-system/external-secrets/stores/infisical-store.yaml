@@ -9,15 +9,13 @@ spec:
       auth:
         universalAuthCredentials:
           clientId:
-            secretRef:
-              name: infisical-auth
-              namespace: kube-system
-              key: CLIENT_ID
+            name: infisical-auth
+            namespace: kube-system
+            key: CLIENT_ID
           clientSecret:
-            secretRef:
-              name: infisical-auth
-              namespace: kube-system
-              key: CLIENT_SECRET
+            name: infisical-auth
+            namespace: kube-system
+            key: CLIENT_SECRET
       secretsScope:
         projectSlug: talos-homelab-cluster
         environmentSlug: prod
