@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: external-secrets
-      version: v1.3.1@sha256:a2a5f5978baad6fecd84da3892f2d95d46873be85b35af92db70ed16e14ec14c
+      version: v1.3.1
       sourceRef:
         kind: HelmRepository
         name: external-secrets
