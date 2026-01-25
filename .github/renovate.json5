@@ -105,17 +105,17 @@
       matchDatasources: [
         'helm',
       ],
-      matchPackagePatterns: [
-        '^coredns$',
-        '^cilium$',
-        '^metrics-server$',
-        '^cert-manager$',
-        '^reloader$',
-        '^external-dns$',
-      ],
       matchUpdateTypes: [
         'patch',
         'minor',
+      ],
+      matchPackageNames: [
+        '/^coredns$/',
+        '/^cilium$/',
+        '/^metrics-server$/',
+        '/^cert-manager$/',
+        '/^reloader$/',
+        '/^external-dns$/',
       ],
     },
     {
@@ -123,17 +123,17 @@
         'Group media apps together',
       ],
       groupName: 'media-apps',
-      matchPackagePatterns: [
-        'sonarr',
-        'radarr',
-        'prowlarr',
-        'readarr',
-        'sabnzbd',
-        'qbittorrent',
-      ],
       matchUpdateTypes: [
         'minor',
         'patch',
+      ],
+      matchPackageNames: [
+        '/sonarr/',
+        '/radarr/',
+        '/prowlarr/',
+        '/readarr/',
+        '/sabnzbd/',
+        '/qbittorrent/',
       ],
     },
     {
