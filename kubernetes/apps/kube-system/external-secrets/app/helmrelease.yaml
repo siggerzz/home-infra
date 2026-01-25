@@ -26,3 +26,5 @@ spec:
     serviceMonitor:
       enabled: true
       interval: 1m
+      additionalLabels:
+        release: kube-prometheus-stack
