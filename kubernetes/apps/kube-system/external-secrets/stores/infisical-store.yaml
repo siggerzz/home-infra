@@ -1,0 +1,23 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: infisical
+spec:
+  provider:
+    infisical:
+      auth:
+        universalAuthCredentials:
+          clientId:
+            secretRef:
+              name: infisical-auth
+              namespace: kube-system
+              key: CLIENT_ID
+          clientSecret:
+            secretRef:
+              name: infisical-auth
+              namespace: kube-system
+              key: CLIENT_SECRET
+      secretsScope:
+        projectSlug: talos-homelab-cluster
+        environmentSlug: prod

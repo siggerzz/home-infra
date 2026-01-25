@@ -23,5 +23,3 @@ spec:
       retries: 3
   values:
     installCRDs: true
-    bitwarden-sdk-server:
-      enabled: true
