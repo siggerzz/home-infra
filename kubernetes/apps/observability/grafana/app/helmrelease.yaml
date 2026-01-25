@@ -107,7 +107,9 @@ spec:
           # renovate: depName="External Secrets Operator"
           gnetId: 21640
           revision: 4
-          datasource: Prometheus
+          datasource:
+            - name: DS_METRICS
+              value: prometheus
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
           datasource: Prometheus
