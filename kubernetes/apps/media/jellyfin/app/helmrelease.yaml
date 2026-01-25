@@ -54,7 +54,7 @@ spec:
           gethomepage.dev/name: Jellyfin
           gethomepage.dev/group: Media
           gethomepage.dev/widget.type: jellyfin
-          gethomepage.dev/widget.url: http://jellyfin-app.media.svc.cluster.local:8096
+          gethomepage.dev/widget.url: http://jellyfin.media.svc.cluster.local:8096
           gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}" }}'
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -113,4 +113,4 @@ spec:
         memory: 3000Mi
       limits:
         gpu.intel.com/i915: 1
-        memory: 10000Mi 
+        memory: 10000Mi
