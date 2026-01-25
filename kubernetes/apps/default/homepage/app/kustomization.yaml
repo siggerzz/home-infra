@@ -7,4 +7,3 @@ resources:
   - ./helmrelease.yaml
   - ./rbac.yaml
   - ./externalsecret.yaml
-  # - ./secret.sops.yaml
