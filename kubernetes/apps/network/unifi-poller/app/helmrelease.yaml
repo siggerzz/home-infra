@@ -40,12 +40,12 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: unifi-poller-secret
-                    key: username
+                    key: USERNAME
               UP_UNIFI_DEFAULT_PASS:
                 valueFrom:
                   secretKeyRef:
                     name: unifi-poller-secret
-                    key: password
+                    key: PASSWORD
               UP_UNIFI_DEFAULT_SAVE_SITES: true
               UP_UNIFI_DEFAULT_SAVE_DPI: true
               UP_INFLUXDB_DISABLE: true

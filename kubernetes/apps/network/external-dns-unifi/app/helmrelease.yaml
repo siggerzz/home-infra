@@ -42,7 +42,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: external-dns-unifi-secret
-                key: api-key
+                key: API_KEY
           - name: LOG_LEVEL
             value: *logLevel
         livenessProbe:
@@ -75,4 +75,3 @@ spec:
           interval: 1m
     podAnnotations:
       secret.reloader.stakater.com/reload: external-dns-unifi-secret
-
