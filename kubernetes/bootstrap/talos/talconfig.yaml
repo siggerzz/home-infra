@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.12.1
+talosVersion: v1.12.2
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.35.0
 
@@ -29,7 +29,7 @@ nodes:
       model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/metal-installer/6170f9e5c119a8d9fc1b57cff00af0425a93fa650d9c0848595f3d8c3fe15c77
+    talosImageURL: factory.talos.dev/metal-installer/f67987cb4e9e7367e925fb038765b018b82e0641284c4547e772c3ac7ef1448e
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -49,7 +49,7 @@ nodes:
       model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/metal-installer/6170f9e5c119a8d9fc1b57cff00af0425a93fa650d9c0848595f3d8c3fe15c77
+    talosImageURL: factory.talos.dev/metal-installer/f67987cb4e9e7367e925fb038765b018b82e0641284c4547e772c3ac7ef1448e
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -69,7 +69,7 @@ nodes:
       model: "SanDisk SD9TB8W2*"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/metal-installer/6170f9e5c119a8d9fc1b57cff00af0425a93fa650d9c0848595f3d8c3fe15c77
+    talosImageURL: factory.talos.dev/metal-installer/f67987cb4e9e7367e925fb038765b018b82e0641284c4547e772c3ac7ef1448e
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -92,7 +92,6 @@ patches:
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/global/machine-time.yaml"
 
-
 # Worker Config
 worker:
   schematic:
@@ -101,6 +100,7 @@ worker:
         officialExtensions:
           - siderolabs/i915
           - siderolabs/intel-ucode
+          - siderolabs/nfs-utils
           - siderolabs/util-linux-tools
 
 # Controller patches
@@ -111,9 +111,9 @@ controlPlane:
         officialExtensions:
           - siderolabs/i915
           - siderolabs/intel-ucode
+          - siderolabs/nfs-utils
           - siderolabs/util-linux-tools
   patches:
     # Commented out - JSON6902 patches not supported in v1.12+
     # - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
-
