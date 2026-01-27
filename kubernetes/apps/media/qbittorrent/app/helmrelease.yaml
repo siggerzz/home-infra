@@ -36,12 +36,12 @@ spec:
               QBT_USERNAME:
                 valueFrom:
                   secretKeyRef:
-                    name: qbittorrent
+                    name: qbittorrent-secret
                     key: QBT_USERNAME
               QBT_PASSWORD:
                 valueFrom:
                   secretKeyRef:
-                    name: qbittorrent
+                    name: qbittorrent-secret
                     key: QBT_PASSWORD
 
             probes:
