@@ -1,0 +1,33 @@
+---
+apiVersion: tuppr.home-operations.com/v1alpha1
+kind: TalosUpgrade
+metadata:
+  name: cluster
+  namespace: system-upgrade
+spec:
+  talos:
+    # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+    version: v1.12.2
+  policy:
+    # Options: default, powercycle
+    rebootMode: default
+    # Set to true to see detailed upgrade progress in logs
+    debug: true
+  healthChecks:
+    # Ensure all nodes are Ready before upgrading
+    - name: nodes-ready
+      timeout: 5m
+      apiVersion: v1
+      kind: Node
+      expr: |
+        status.conditions.filter(c, c.type == "Ready").all(c, c.status == "True")
+
+    # Ensure all critical system deployments are healthy
+    - name: critical-deployments
+      timeout: 5m
+      apiVersion: apps/v1
+      kind: Deployment
+      namespace: kube-system
+      expr: |
+        (spec.replicas == 0 || status.readyReplicas == spec.replicas) &&
+        (spec.replicas == 0 || status.updatedReplicas == spec.replicas)
