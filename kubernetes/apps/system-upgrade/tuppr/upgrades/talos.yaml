@@ -21,13 +21,3 @@ spec:
       kind: Node
       expr: |
         status.conditions.filter(c, c.type == "Ready").all(c, c.status == "True")
-
-    # Ensure all critical system deployments are healthy
-    - name: critical-deployments
-      timeout: 5m
-      apiVersion: apps/v1
-      kind: Deployment
-      namespace: kube-system
-      expr: |
-        (spec.replicas == 0 || status.readyReplicas == spec.replicas) &&
-        (spec.replicas == 0 || status.updatedReplicas == spec.replicas)
