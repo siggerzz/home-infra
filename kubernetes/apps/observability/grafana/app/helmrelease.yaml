@@ -85,6 +85,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+          - name: tuppr
+            orgId: 1
+            folder: "Tuppr"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/tuppr
     dashboards:
       default:
         cert-manager:
@@ -217,5 +225,10 @@ spec:
           secretName: grafana-tls
     persistence:
       enabled: false
+    extraConfigmapMounts:
+      - name: tuppr-dashboard
+        mountPath: /var/lib/grafana/dashboards/tuppr
+        configMap: grafana-dashboard-tuppr
+        readOnly: true
     testFramework:
       enabled: false

@@ -1,0 +1,10 @@
+# Enable Kubernetes pods to access Talos API
+# Required for tuppr to perform automated upgrades
+machine:
+  features:
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+        - os:admin
+      allowedKubernetesNamespaces:
+        - system-upgrade
