@@ -10,11 +10,12 @@ A fully automated home lab Kubernetes cluster running media services, home autom
 
 ## 💻 Hardware
 
-| Hostname   | Role          | Hardware          | CPU      | RAM  | Storage   |
-| ---------- | ------------- | ----------------- | -------- | ---- | --------- |
-| glados-c01 | Control Plane | Lenovo M720q Tiny | i5-8400T | 16GB | 256GB SSD |
-| glados-w01 | Worker        | Lenovo M720q Tiny | i5-8400T | 16GB | 256GB SSD |
-| glados-w02 | Worker        | Lenovo M720q Tiny | i5-8400T | 16GB | 256GB SSD |
+| Device               | Num | OS Disk Size | Data Disk Size | RAM  | OS          | Function   |
+| -------------------- | --- | ------------ | -------------- | ---- | ----------- | ---------- |
+| Lenovo M720q Tiny    | 3   | 256GB SSD    | -              | 16GB | Talos Linux | Kubernetes |
+| UniFi UNAS           | 1   | -            | 3x16TB HDD     | -    | UniFi OS    | NAS        |
+| UniFi UDM Pro        | 1   | -            | -              | -    | UniFi OS    | Router     |
+| UniFi USW Pro 24 PoE | 1   | -            | -              | -    | -           | PoE Switch |
 
 ## 🔧 Core Stack
 
@@ -30,19 +31,24 @@ A fully automated home lab Kubernetes cluster running media services, home autom
 ## 📱 Applications
 
 **Media Stack**
+
 - Jellyfin, Radarr, Sonarr, Prowlarr, Sabnzbd, qBittorrent
 - Audiobookshelf, Booklore, Shelfmark
 
 **Home Automation**
+
 - Home Assistant
 
 **Network Services**
+
 - UniFi Controller, AdGuard Home, Cloudflare Tunnel
 
 **Observability**
+
 - Grafana, Prometheus, Loki, Alloy
 
 **Dashboard**
+
 - Homepage - Unified dashboard with service integrations
 
 ## 🔐 GitOps & Automation
