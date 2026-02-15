@@ -110,6 +110,13 @@ spec:
             release: kube-prometheus-stack
           namespaceSelector:
             any: true
+          metricRelabelings:
+            - sourceLabels: [service]
+              targetLabel: prometheus_service
+            - sourceLabels: [exported_service]
+              targetLabel: service
+            - action: labeldrop
+              regex: exported_service
     # --- Resources ---
     resources:
       requests:
