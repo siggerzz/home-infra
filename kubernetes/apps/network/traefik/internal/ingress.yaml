@@ -16,4 +16,4 @@ spec:
               service:
                 name: traefik-internal
                 port:
-                  number: 9000
+                  number: 8080
