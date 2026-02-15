@@ -47,7 +47,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: external
+        className: traefik-external
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/icon: jellyfin
