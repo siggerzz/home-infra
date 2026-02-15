@@ -32,8 +32,7 @@ spec:
       kubernetesCRD:
         enabled: true
       kubernetesIngressNginx:
-        enabled: true
-        ingressClass: internal
+        enabled: false
     # --- IngressClass ---
     ingressClass:
       enabled: true

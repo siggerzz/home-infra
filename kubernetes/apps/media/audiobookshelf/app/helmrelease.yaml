@@ -82,15 +82,7 @@ spec:
           gethomepage.dev/icon: audiobookshelf
           gethomepage.dev/name: Audiobookshelf
           gethomepage.dev/group: Media
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/proxy-body-size: "10g"
-          nginx.ingress.kubernetes.io/proxy-buffering: "off"
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-          nginx.ingress.kubernetes.io/server-snippet: |-
-            proxy_set_header Host               $host;
-            proxy_set_header Upgrade            $http_upgrade;
-            proxy_set_header Connection         "upgrade";
         hosts:
           - host: &host "audiobookshelf.${SECRET_DOMAIN}"
             paths:
@@ -98,10 +90,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host
-            secretName: audiobookshelf-tls
     persistence:
       config:
         existingClaim: audiobookshelf

@@ -93,7 +93,6 @@ spec:
           gethomepage.dev/icon: calibre-web
           gethomepage.dev/name: Shelfmark
           gethomepage.dev/group: Media
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "shelfmark.${SECRET_DOMAIN}"
             paths:
@@ -101,10 +100,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host
-            secretName: shelfmark-tls
     persistence:
       config:
         existingClaim: shelfmark

@@ -173,7 +173,6 @@ spec:
           gethomepage.dev/icon: bookstack
           gethomepage.dev/name: BookLore
           gethomepage.dev/group: Media
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "booklore.${SECRET_DOMAIN}"
             paths:
@@ -181,10 +180,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host
-            secretName: booklore-tls
     persistence:
       config:
         existingClaim: booklore-config

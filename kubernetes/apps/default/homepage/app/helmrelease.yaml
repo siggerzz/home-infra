@@ -72,8 +72,6 @@ spec:
       app:
         enabled: true
         className: internal
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host homepage.${SECRET_DOMAIN}
             paths:
@@ -82,10 +80,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host
-            secretName: homepage-tls
     persistence:
       config:
         type: configMap

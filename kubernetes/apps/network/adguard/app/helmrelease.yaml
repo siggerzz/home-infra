@@ -88,7 +88,6 @@ spec:
           gethomepage.dev/widget.url: http://adguard-app.network.svc.cluster.local:3000
           gethomepage.dev/widget.username: '{{ "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}" }}'
           gethomepage.dev/widget.password: '{{ "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}" }}'
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "adguard.${SECRET_DOMAIN}"
             paths:
@@ -96,10 +95,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host
-            secretName: adguard-tls
     persistence:
       config:
         existingClaim: adguard-config

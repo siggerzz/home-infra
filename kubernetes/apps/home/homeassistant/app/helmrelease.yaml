@@ -97,7 +97,6 @@ spec:
       app:
         className: external
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
           - host: &host_hass hass.${SECRET_DOMAIN}
@@ -106,14 +105,8 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host_hass
-            secretName: homeassistant-tls
       code-server:
         className: internal
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host_code hass-code.${SECRET_DOMAIN}
             paths:
@@ -121,10 +114,6 @@ spec:
                 service:
                   identifier: app
                   port: code-server
-        tls:
-          - hosts:
-              - *host_code
-            secretName: homeassistant-code-tls
     persistence:
       config:
         existingClaim: home-assistant-data
