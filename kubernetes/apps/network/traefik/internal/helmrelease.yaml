@@ -47,6 +47,10 @@ spec:
       isDefaultClass: true
     # --- Entrypoints ---
     ports:
+      traefik:
+        port: 9000
+        expose:
+          default: true
       web:
         port: 8000
         exposedPort: 80
