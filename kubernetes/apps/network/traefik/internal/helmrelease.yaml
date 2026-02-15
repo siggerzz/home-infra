@@ -33,6 +33,13 @@ spec:
         enabled: true
       kubernetesIngressNginx:
         enabled: false
+    # --- API / Dashboard ---
+    api:
+      dashboard: true
+      insecure: true
+    ingressRoute:
+      dashboard:
+        enabled: false
     # --- IngressClass ---
     ingressClass:
       enabled: true
