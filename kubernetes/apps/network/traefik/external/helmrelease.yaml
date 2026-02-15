@@ -31,7 +31,7 @@ spec:
     # --- Provider Configuration ---
     providers:
       kubernetesIngress:
-        enabled: false
+        enabled: true
       kubernetesCRD:
         enabled: true
       kubernetesIngressNginx:
