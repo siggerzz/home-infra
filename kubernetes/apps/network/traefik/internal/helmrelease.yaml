@@ -29,8 +29,10 @@ spec:
     providers:
       kubernetesIngress:
         enabled: true
+        allowExternalNameServices: true
       kubernetesCRD:
         enabled: true
+        allowExternalNameServices: true
       kubernetesIngressNginx:
         enabled: false
     # --- API / Dashboard ---
