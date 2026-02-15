@@ -23,8 +23,8 @@ A fully automated home lab Kubernetes cluster running media services, home autom
 - **GitOps**: [Flux CD](https://fluxcd.io/) - Automated cluster reconciliation
 - **CNI**: [Cilium](https://cilium.io/) - eBPF-based networking
 - **Storage**: [OpenEBS](https://openebs.io/) - Container-attached storage
-- **Ingress**: [ingress-nginx](https://kubernetes.github.io/ingress-nginx/) - Ingress controller
-- **Certificates**: [cert-manager](https://cert-manager.io/) - Automated TLS with Let's Encrypt
+- **Ingress**: [Traefik](https://traefik.io/) - Cloud-native reverse proxy (split internal/external instances)
+- **Certificates**: [cert-manager](https://cert-manager.io/) - Automated TLS with Let's Encrypt wildcard certificates
 - **Secrets**: [External Secrets](https://external-secrets.io/) + [Infisical](https://infisical.com/) - Secret management
 - **DNS**: [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) - Network-wide ad blocking
 

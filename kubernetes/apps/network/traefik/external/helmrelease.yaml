@@ -34,8 +34,15 @@ spec:
         enabled: true
       kubernetesCRD:
         enabled: true
-      kubernetesIngressNginx:
-        enabled: false
+    # --- API / Dashboard ---
+    api:
+      dashboard: true
+    ingressRoute:
+      dashboard:
+        enabled: true
+        matchRule: Host(`traefik-external.${SECRET_DOMAIN}`)
+        entryPoints:
+          - websecure
     # --- IngressClass ---
     ingressClass:
       enabled: true

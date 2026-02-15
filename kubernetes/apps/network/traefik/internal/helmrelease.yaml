@@ -33,15 +33,15 @@ spec:
       kubernetesCRD:
         enabled: true
         allowExternalNameServices: true
-      kubernetesIngressNginx:
-        enabled: false
     # --- API / Dashboard ---
     api:
       dashboard: true
-      insecure: true
     ingressRoute:
       dashboard:
-        enabled: false
+        enabled: true
+        matchRule: Host(`traefik-internal.${SECRET_DOMAIN}`)
+        entryPoints:
+          - websecure
     # --- IngressClass ---
     ingressClass:
       enabled: true
@@ -49,10 +49,6 @@ spec:
       isDefaultClass: true
     # --- Entrypoints ---
     ports:
-      traefik:
-        port: 8080
-        expose:
-          default: true
       web:
         port: 8000
         exposedPort: 80
@@ -64,7 +60,9 @@ spec:
               to: websecure
               scheme: https
         forwardedHeaders:
-          insecure: true
+          trustedIPs:
+            - "10.69.0.0/16"
+            - "192.168.1.0/24"
       websecure:
         port: 8443
         exposedPort: 443
@@ -74,7 +72,9 @@ spec:
           tls:
             enabled: true
         forwardedHeaders:
-          insecure: true
+          trustedIPs:
+            - "10.69.0.0/16"
+            - "192.168.1.0/24"
       metrics:
         port: 9100
         expose:
