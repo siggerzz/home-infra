@@ -96,6 +96,7 @@ spec:
     # --- Metrics ---
     metrics:
       prometheus:
+        disableAPICheck: true
         entryPoint: metrics
         serviceMonitor:
           enabled: true
