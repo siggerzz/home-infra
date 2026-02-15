@@ -24,6 +24,7 @@ spec:
       retries: 3
   values:
     global:
+      storageClass: openebs-hostpath
       envFrom:
         - secretRef:
             name: authentik-secret
@@ -62,12 +63,10 @@ spec:
       primary:
         persistence:
           enabled: true
-          storageClass: openebs-hostpath
           size: 2Gi
     redis:
       enabled: true
       master:
         persistence:
           enabled: true
-          storageClass: openebs-hostpath
           size: 1Gi
