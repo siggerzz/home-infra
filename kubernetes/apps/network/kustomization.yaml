@@ -9,7 +9,6 @@ resources:
   - ./echo-server/ks.yaml
   - ./external-dns/ks.yaml
   - ./external-dns-unifi/ks.yaml
-  - ./ingress-nginx/ks.yaml
   - ./traefik/ks.yaml
   - ./unifi/ks.yaml
   - ./unifi-poller/ks.yaml

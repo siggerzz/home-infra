@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: ingress-nginx-internal
+    - name: traefik-internal
   path: ./kubernetes/apps/network/external-dns-unifi/app
   prune: true
   sourceRef:

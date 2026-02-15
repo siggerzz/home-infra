@@ -33,14 +33,12 @@ spec:
         enabled: true
       kubernetesIngressNginx:
         enabled: true
-        ingressClass: traefik-internal
+        ingressClass: internal
     # --- IngressClass ---
-    # Using temporary class name during parallel-run with ingress-nginx.
-    # Change to "internal" (with isDefaultClass: true) after ingress-nginx is removed.
     ingressClass:
       enabled: true
-      name: traefik-internal
-      isDefaultClass: false
+      name: internal
+      isDefaultClass: true
     # --- Entrypoints ---
     ports:
       web:
@@ -72,15 +70,14 @@ spec:
     # --- Service ---
     service:
       annotations:
-        # TODO: Change to 192.168.1.20 after cutover (currently nginx's IP)
-        lbipam.cilium.io/ips: "192.168.1.24"
+        lbipam.cilium.io/ips: "192.168.1.20"
       spec:
         externalTrafficPolicy: Cluster
     # --- TLS ---
     tlsStore:
       default:
         defaultCertificate:
-          secretName: "${SECRET_DOMAIN/./-}-staging-tls"
+          secretName: "${SECRET_DOMAIN/./-}-production-tls"
     tlsOptions:
       default:
         minVersion: VersionTLS12
