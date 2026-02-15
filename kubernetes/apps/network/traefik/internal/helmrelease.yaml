@@ -102,6 +102,7 @@ spec:
     metrics:
       prometheus:
         disableAPICheck: true
+        addRoutersLabels: true
         entryPoint: metrics
         serviceMonitor:
           enabled: true
