@@ -85,14 +85,8 @@ spec:
       spec:
         externalTrafficPolicy: Cluster
     # --- TLS ---
-    # TODO: Switch internal to production cert too once validated
-    tlsStore:
-      default:
-        defaultCertificate:
-          secretName: "${SECRET_DOMAIN/./-}-production-tls"
-    tlsOptions:
-      default:
-        minVersion: VersionTLS12
+    # tlsStore and tlsOptions "default" resources are cluster-scoped,
+    # managed by traefik-internal to avoid resource conflicts.
     # --- Access Logs ---
     logs:
       access:
