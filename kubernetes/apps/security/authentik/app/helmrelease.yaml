@@ -70,6 +70,10 @@ spec:
       enabled: true
       global:
         defaultStorageClass: openebs-hostpath
+      auth:
+        existingSecret: authentik-secret
+        secretKeys:
+          userPasswordKey: postgres-password
       primary:
         persistence:
           enabled: true
