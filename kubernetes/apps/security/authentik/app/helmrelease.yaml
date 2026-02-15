@@ -17,11 +17,13 @@ spec:
   install:
     remediation:
       retries: 3
+    timeout: 15m
   upgrade:
     cleanupOnFail: true
     remediation:
       strategy: rollback
       retries: 3
+    timeout: 15m
   values:
     global:
       envFrom:
