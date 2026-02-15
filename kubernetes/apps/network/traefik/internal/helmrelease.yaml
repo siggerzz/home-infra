@@ -48,10 +48,11 @@ spec:
         exposedPort: 80
         expose:
           default: true
-        redirections:
-          entryPoint:
-            to: websecure
-            scheme: https
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
         forwardedHeaders:
           insecure: true
       websecure:
@@ -59,8 +60,9 @@ spec:
         exposedPort: 443
         expose:
           default: true
-        tls:
-          enabled: true
+        http:
+          tls:
+            enabled: true
         forwardedHeaders:
           insecure: true
       metrics:
