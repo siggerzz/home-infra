@@ -48,8 +48,9 @@ spec:
         check_for_plugin_updates: false
         reporting_enabled: false
       auth:
+        disable_login_form: true
         signout_redirect_url: https://auth.${SECRET_DOMAIN}/application/o/grafana/end-session/
-        oauth_auto_login: false
+        oauth_auto_login: true
       auth.generic_oauth:
         enabled: true
         name: Authentik
