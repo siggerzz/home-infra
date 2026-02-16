@@ -62,10 +62,7 @@ spec:
         role_attribute_path: contains(groups, 'authentik Admins') && 'Admin' || 'Viewer'
         allow_assign_grafana_admin: true
       auth.anonymous:
-        enabled: true
-        org_id: 1
-        org_name: Main Org.
-        org_role: Viewer
+        enabled: false
       news:
         news_feed_enabled: false
     datasources:
