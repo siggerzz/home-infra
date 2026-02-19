@@ -10,5 +10,6 @@ resources:
   - ./external-dns/ks.yaml
   - ./external-dns-unifi/ks.yaml
   - ./traefik/ks.yaml
+  - ./unas/ks.yaml
   - ./unifi/ks.yaml
   - ./unifi-poller/ks.yaml
