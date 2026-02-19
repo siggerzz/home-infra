@@ -84,8 +84,8 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media
     env:
       TZ: "Europe/London"
       DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"

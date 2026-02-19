@@ -107,14 +107,14 @@ spec:
           - path: /config
       books:
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media/Books
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media/Books
         globalMounts:
           - path: /books
       media:
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media
         globalMounts:
           - path: /media
       tmpfs:

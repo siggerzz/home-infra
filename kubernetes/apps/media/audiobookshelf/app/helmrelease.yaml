@@ -97,14 +97,14 @@ spec:
           - path: /config
       audiobooks:
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media/Audiobooks
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media/Audiobooks
         globalMounts:
           - path: /audiobooks
       podcasts:
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media/Podcasts
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media/Podcasts
         globalMounts:
           - path: /podcasts
       tmpfs:

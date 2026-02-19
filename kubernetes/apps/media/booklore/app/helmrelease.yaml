@@ -187,14 +187,14 @@ spec:
           - path: /app/data
       books:
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media/Books
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media/Books
         globalMounts:
           - path: /books
       bookdrop:
         type: nfs
-        server: ${SECRET_NFS_DOMAIN}
-        path: /mnt/user/Media/Books/bookdrop
+        server: ${SECRET_NAS_IP}
+        path: /var/nfs/shared/Media/Books/bookdrop
         globalMounts:
           - path: /bookdrop
       mariadb-data:
