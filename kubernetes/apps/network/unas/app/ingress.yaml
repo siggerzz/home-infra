@@ -1,0 +1,38 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: unas-transport
+spec:
+  insecureSkipVerify: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: unas
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "nas.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "192.168.1.20"
+spec:
+  type: ExternalName
+  externalName: ${SECRET_NAS_IP}
+  ports:
+    - name: https
+      port: 443
+      targetPort: 443
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: unas
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nas.${SECRET_DOMAIN}`)
+      kind: Rule
+      services:
+        - name: unas
+          port: 443
+          scheme: https
+          serversTransport: unas-transport
