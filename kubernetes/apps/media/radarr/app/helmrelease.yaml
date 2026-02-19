@@ -101,7 +101,7 @@ spec:
         existingClaim: radarr
       media:
         type: nfs
-        server: nas.${SECRET_DOMAIN}
+        server: ${SECRET_NAS_IP}
         path: /var/nfs/shared/Media
         globalMounts:
           - path: /media
