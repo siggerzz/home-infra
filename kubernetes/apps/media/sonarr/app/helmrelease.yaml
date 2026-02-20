@@ -36,7 +36,7 @@ spec:
               SONARR__APP__INSTANCENAME: Sonarr
               SONARR__APP__THEME: dark
               SONARR__AUTH__METHOD: External
-              SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              SONARR__AUTH__REQUIRED: Enabled
               SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
               SONARR__SERVER__PORT: &port 80
@@ -82,6 +82,7 @@ spec:
       app:
         className: internal
         annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: security-authentik@kubernetescrd
           gethomepage.dev/enabled: "true"
           gethomepage.dev/icon: sonarr
           gethomepage.dev/name: Sonarr

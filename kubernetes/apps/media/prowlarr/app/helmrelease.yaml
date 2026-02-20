@@ -34,7 +34,8 @@ spec:
             env:
               PROWLARR__APP__INSTANCENAME: Prowlarr
               PROWLARR__APP__THEME: dark
-              PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              PROWLARR__AUTH__METHOD: External
+              PROWLARR__AUTH__REQUIRED: Enabled
               PROWLARR__LOG__DBENABLED: "False"
               PROWLARR__LOG__LEVEL: info
               PROWLARR__SERVER__PORT: &port 80
@@ -79,6 +80,7 @@ spec:
       app:
         className: internal
         annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: security-authentik@kubernetescrd
           gethomepage.dev/enabled: "true"
           gethomepage.dev/icon: prowlarr
           gethomepage.dev/name: Prowlarr
