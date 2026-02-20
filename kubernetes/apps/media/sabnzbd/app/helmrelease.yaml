@@ -96,12 +96,6 @@ spec:
         path: /var/nfs/shared/Media
         globalMounts:
           - path: /media
-      downloads:
-        type: nfs
-        server: ${SECRET_NAS_IP}
-        path: /var/nfs/shared/Media/Downloads
-        globalMounts:
-          - path: /downloads
       incomplete:
         enabled: true
         type: emptyDir
