@@ -59,7 +59,7 @@ spec:
         auth_url: https://auth.${SECRET_DOMAIN}/application/o/authorize/
         token_url: https://auth.${SECRET_DOMAIN}/application/o/token/
         api_url: https://auth.${SECRET_DOMAIN}/application/o/userinfo/
-        role_attribute_path: contains(groups, 'authentik Admins') && 'Admin' || 'Viewer'
+        role_attribute_path: contains(groups, 'Observability Users') && 'Admin' || 'Viewer'
         allow_assign_grafana_admin: true
       auth.anonymous:
         enabled: false
