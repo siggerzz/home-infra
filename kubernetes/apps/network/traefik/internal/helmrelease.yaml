@@ -38,10 +38,7 @@ spec:
       dashboard: true
     ingressRoute:
       dashboard:
-        enabled: true
-        matchRule: Host(`traefik-internal.${SECRET_DOMAIN}`)
-        entryPoints:
-          - websecure
+        enabled: false
     # --- IngressClass ---
     ingressClass:
       enabled: true
@@ -75,6 +72,10 @@ spec:
           trustedIPs:
             - "10.69.0.0/16"
             - "192.168.1.0/24"
+      traefik:
+        port: 9000
+        expose:
+          default: true
       metrics:
         port: 9100
         expose:

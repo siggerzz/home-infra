@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traefik-external-dashboard
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: security-authentik@kubernetescrd
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: traefik
+    gethomepage.dev/name: Traefik External
+    gethomepage.dev/group: Network
+spec:
+  ingressClassName: internal
+  rules:
+    - host: &host "traefik-external.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: traefik-external
+                port:
+                  number: 9000

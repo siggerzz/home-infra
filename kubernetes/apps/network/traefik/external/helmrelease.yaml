@@ -39,10 +39,7 @@ spec:
       dashboard: true
     ingressRoute:
       dashboard:
-        enabled: true
-        matchRule: Host(`traefik-external.${SECRET_DOMAIN}`)
-        entryPoints:
-          - websecure
+        enabled: false
     # --- IngressClass ---
     ingressClass:
       enabled: true
@@ -76,6 +73,10 @@ spec:
           # Trust X-Forwarded-* headers from cloudflared (in-cluster pod network)
           trustedIPs:
             - "10.69.0.0/16"
+      traefik:
+        port: 9000
+        expose:
+          default: true
       metrics:
         port: 9100
         expose:
