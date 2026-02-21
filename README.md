@@ -1,4 +1,4 @@
-# 🏠 home-infra
+# 🏠 homelab
 
 <div align="center">
   <p><em>My home Kubernetes cluster running on Talos Linux, managed with GitOps</em></p>
