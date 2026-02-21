@@ -21,4 +21,4 @@ spec:
               service:
                 name: traefik-external
                 port:
-                  number: 9000
+                  number: 8080
