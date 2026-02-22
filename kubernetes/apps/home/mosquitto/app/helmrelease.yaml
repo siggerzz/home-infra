@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: eclipse-mosquitto
-              tag: 2.0.21@sha256:6f1ef41c7802bb5e5c5473dad79ed5e44b7e63b2e3a8b2da11099e27e5de2c4a
+              tag: 2.0.22@sha256:6852da90a65dfff7aa3a1c8b249e92bb83c17ea8bbcce56bedff8707332a1a29
             env:
               TZ: Europe/London
             probes:
