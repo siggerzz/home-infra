@@ -16,9 +16,9 @@ spec:
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes:
       - ReadWriteOnce
-    repositoryCapacity: 10Gi
-    repositoryStorageClassName: nfs-volsync
-    repositoryAccessModes:
+    capacity: 10Gi
+    storageClassName: nfs-volsync
+    accessModes:
       - ReadWriteOnce
     moverSecurityContext:
       runAsUser: 0
