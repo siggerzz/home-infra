@@ -21,4 +21,3 @@ resources:
   - ./spegel.yaml
   - ./stakater.yaml
   - ./traefik.yaml
-  - ./volsync.yaml
