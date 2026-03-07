@@ -9,6 +9,7 @@
 [![Pods](https://img.shields.io/endpoint?url=https://kromgo.siggerzz.io/cluster_pod_count&style=for-the-badge&label=Pods)](https://kromgo.siggerzz.io)
 [![CPU](https://img.shields.io/endpoint?url=https://kromgo.siggerzz.io/cluster_cpu_usage&style=for-the-badge&label=CPU)](https://kromgo.siggerzz.io)
 [![Memory](https://img.shields.io/endpoint?url=https://kromgo.siggerzz.io/cluster_memory_usage&style=for-the-badge&label=Memory)](https://kromgo.siggerzz.io)
+[![Power](https://img.shields.io/endpoint?url=https://kromgo.siggerzz.io/cluster_power_usage&style=for-the-badge&label=Power)](https://kromgo.siggerzz.io)
 
 </div>
 

@@ -11,3 +11,4 @@ resources:
   - ./loki/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
+  - ./tapo-exporter/ks.yaml
