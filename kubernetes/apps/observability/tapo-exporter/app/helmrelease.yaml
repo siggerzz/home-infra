@@ -33,14 +33,13 @@ spec:
               tag: latest@sha256:2a6e033e0b75a99070c4691bc62c72da44411f0be058db39de11983bf6113ee3
             env:
               TZ: Europe/London
-              PORT: &port 9333
-              DEVICES: "server_plug=192.168.40.52"
-              TAPO_EMAIL:
+              DEVICES: "server_plug:192.168.40.52"
+              TAPO_USER_EMAIL:
                 valueFrom:
                   secretKeyRef:
                     name: tapo-exporter-secret
                     key: TAPO_EMAIL
-              TAPO_PASSWORD:
+              TAPO_USER_PASSWORD:
                 valueFrom:
                   secretKeyRef:
                     name: tapo-exporter-secret
@@ -52,7 +51,7 @@ spec:
                 spec:
                   httpGet:
                     path: /metrics
-                    port: *port
+                    port: &port 8080
                   initialDelaySeconds: 10
                   periodSeconds: 30
                   timeoutSeconds: 10
