@@ -34,7 +34,7 @@ spec:
             env:
               TZ: Europe/London
               PORT: &port 9333
-              DEVICES: "server_plug=192.168.40.52:80"
+              DEVICES: "server_plug=192.168.40.52"
               TAPO_EMAIL:
                 valueFrom:
                   secretKeyRef:
