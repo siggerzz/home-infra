@@ -10,6 +10,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: mosquitto
   path: ./kubernetes/apps/home/zigbee2mqtt/app
@@ -20,3 +22,8 @@ spec:
   wait: false
   interval: 30m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: zigbee2mqtt
+      VOLSYNC_CLAIM: zigbee2mqtt-data
+      VOLSYNC_CAPACITY: 1Gi

@@ -10,6 +10,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   path: ./kubernetes/apps/media/qbittorrent/app
   prune: true
   sourceRef:
@@ -18,3 +20,8 @@ spec:
   wait: false
   interval: 30m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: qbittorrent
+      VOLSYNC_CLAIM: qbittorrent
+      VOLSYNC_CAPACITY: 5Gi

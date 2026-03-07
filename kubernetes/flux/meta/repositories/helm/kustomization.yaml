@@ -14,9 +14,11 @@ resources:
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
   - ./metrics-server.yaml
+  - ./nfs-provisioner.yaml
   - ./node-feature-discovery.yaml
   - ./openebs.yaml
   - ./prometheus-community.yaml
   - ./spegel.yaml
   - ./stakater.yaml
   - ./traefik.yaml
+  - ./volsync.yaml

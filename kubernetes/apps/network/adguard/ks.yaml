@@ -10,6 +10,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: openebs
     - name: traefik-internal
@@ -21,4 +23,8 @@ spec:
   wait: false
   interval: 30m
   timeout: 5m
-
+  postBuild:
+    substitute:
+      APP: adguard
+      VOLSYNC_CLAIM: adguard-config
+      VOLSYNC_CAPACITY: 1Gi
