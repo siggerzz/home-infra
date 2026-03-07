@@ -90,6 +90,11 @@ spec:
         ports:
           http:
             port: *port
+    persistence:
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
     serviceMonitor:
       app:
         serviceName: tapo-exporter
