@@ -1,4 +1,16 @@
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: adguard-data-repo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-volsync
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
@@ -16,10 +28,11 @@ spec:
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes:
       - ReadWriteOnce
-    capacity: 5Gi
-    storageClassName: nfs-volsync
-    accessModes:
-      - ReadWriteOnce
+    moverVolumes:
+      - mountPath: repository
+        volumeSource:
+          persistentVolumeClaim:
+            claimName: adguard-data-repo
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
